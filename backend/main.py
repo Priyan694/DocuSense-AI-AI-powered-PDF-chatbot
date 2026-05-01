@@ -9,7 +9,7 @@ from services.config import settings
 app = FastAPI(
     title="PDF Chatbot RAG API",
     version="1.0.0",
-    description="Session-based PDF chatbot using RAG, LangChain, LangGraph, ChromaDB, MiniMax, and Groq.",
+    description="Session-based PDF chatbot using RAG, LangChain, LangGraph, ChromaDB, MiniMax, Groq, and OpenAI.",
 )
 
 app.add_middleware(
@@ -27,4 +27,3 @@ app.include_router(chat_router)
 @app.get("/health")
 async def health_check() -> dict[str, str]:
     return {"status": "ok"}
-

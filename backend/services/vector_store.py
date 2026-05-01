@@ -29,13 +29,20 @@ def index_documents(session_id: str, documents: list[Document]) -> int:
     return len(documents)
 
 
-def retrieve_documents(session_id: str, query: str, top_k: int = 4) -> list[tuple[Document, float]]:
+def retrieve_documents(
+    session_id: str,
+    query: str,
+    top_k: int = 6,
+    metadata_filter: dict | None = None,
+) -> list[tuple[Document, float]]:
     store = get_session_store(session_id)
-    return store.similarity_search_with_relevance_scores(query, k=top_k)
+    search_kwargs = {"k": top_k}
+    if metadata_filter:
+        search_kwargs["filter"] = metadata_filter
+    return store.similarity_search_with_relevance_scores(query, **search_kwargs)
 
 
 def delete_session_store(session_id: str) -> None:
     persist_directory = VECTOR_ROOT / session_id
     if persist_directory.exists():
         shutil.rmtree(persist_directory, ignore_errors=True)
-

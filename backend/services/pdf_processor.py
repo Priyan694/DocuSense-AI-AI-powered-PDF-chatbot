@@ -13,13 +13,11 @@ def clean_page_text(text: str) -> str:
 
 def extract_documents_from_pdf(file_path: Path, pdf_name: str) -> tuple[list[Document], str | None]:
     documents: list[Document] = []
-    low_text_pages = 0
 
     with fitz.open(file_path) as pdf:
         for page_index, page in enumerate(pdf, start=1):
             text = clean_page_text(page.get_text("text"))
             if len(text) < 30:
-                low_text_pages += 1
                 continue
 
             documents.append(
@@ -35,8 +33,5 @@ def extract_documents_from_pdf(file_path: Path, pdf_name: str) -> tuple[list[Doc
     warning = None
     if not documents:
         warning = "No readable text found. OCR may be required."
-    elif low_text_pages:
-        warning = f"{low_text_pages} page(s) had little or no readable text."
 
     return documents, warning
-

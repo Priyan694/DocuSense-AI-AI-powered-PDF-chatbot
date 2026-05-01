@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     groq_api_key: str = Field(default="")
     groq_model: str = Field(default="llama-3.3-70b-versatile")
     groq_base_url: str = Field(default="https://api.groq.com/openai/v1")
+    openai_api_key: str = Field(default="")
+    openai_model: str = Field(default="gpt-4.1-mini")
+    openai_base_url: str = Field(default="https://api.openai.com/v1")
     embedding_model_name: str = Field(default="sentence-transformers/all-MiniLM-L6-v2")
     vector_db_path: str = Field(default=str(BASE_DIR / "chroma_db"))
     frontend_origin: str = Field(default="http://localhost:5173")
@@ -25,4 +28,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
