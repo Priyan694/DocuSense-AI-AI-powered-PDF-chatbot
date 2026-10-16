@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_BACKEND_URL
+  ? new URL("/api", import.meta.env.VITE_BACKEND_URL).toString()
+  : "/api";
+
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL,
 });
 
 export const uploadPdf = async (files, llmProvider, sessionId) => {
