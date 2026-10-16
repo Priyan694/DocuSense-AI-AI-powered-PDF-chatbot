@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     openai_base_url: str = Field(default="https://api.openai.com/v1")
     embedding_model_name: str = Field(default="sentence-transformers/all-MiniLM-L6-v2")
     vector_db_path: str = Field(default=str(BASE_DIR / "chroma_db"))
-    frontend_origin: str = Field(default="http://localhost:5173")
+    frontend_origin: str = Field(default="*")
     max_upload_size_mb: int = Field(default=20)
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
