@@ -1,0 +1,38 @@
+# Python virtual environment (1.2 GB - main culprit)
+.venv/
+.backend/.venv/
+
+# Python backup environment
+.venv-py314-backup/
+
+# ChromaDB vector storage (62 MB)
+backend/chroma_db/
+chroma_db/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temp uploads
+temp_uploads/
+
+# Jupyter notebooks (large files)
+*.ipynb
+
+# Local git backups
+.git/
+
+# IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment files
+.env
+settings.local.json
+
+# Documentation
+*.md
